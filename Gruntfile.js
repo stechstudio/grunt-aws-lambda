@@ -22,7 +22,8 @@ module.exports = function (grunt) {
                 'test/integ/*_test.js'
             ],
             options: {
-                jshintrc: '.jshintrc'
+                jshintrc: '.jshintrc',
+                reporterOutput: ""
             }
         },
 
