@@ -87,8 +87,8 @@ exports.lambda_invoke = {
             // test cwd inside the function
             var expected_cwd = 'Running "lambda_invoke:package_folder_options" (lambda_invoke) task\n\n\nSuccess!  Message:\n------------------\n' +
               path.join(cwd, 'test/fixtures/package_folder_option') +
-              '\n\nDone, without errors.';
-              
+              '\n\nDone.';
+
             var actual_cwd = grunt.util.normalizelf(result.stdout);
             test.equal(actual_cwd, expected_cwd);
 
