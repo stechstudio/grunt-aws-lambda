@@ -70,41 +70,29 @@ packageTask.getHandler = function (grunt) {
                  * Prevents issues on Windows for directories that don't have execute permissions
                  * See https://github.com/Tim-B/grunt-aws-lambda/issues/6
                  */
-                var old_normalizeEntryData = zipArchive._normalizeEntryData;
-                zipArchive._normalizeEntryData = function (data, stats) {
-                    // 0777 file permission
-                    data.mode = 511;
-                    return old_normalizeEntryData.apply(zipArchive, [data, stats]);
-                };
+                // var old_normalizeEntryData = zipArchive._normalizeEntryData;
+                // zipArchive._normalizeEntryData = function (data, stats) {
+                //     // 0777 file permission
+                //     data.mode = 511;
+                //     return old_normalizeEntryData.apply(zipArchive, [data, stats]);
+                // };
 
                 zipArchive.pipe(output);
-
-                // zipArchive.bulk([
-                //     {
-                //         src: ['./**'],
-                //         dot: true,
-                //         expand: true,
-                //         cwd: install_location + '/node_modules/' + pkg.name
-                //     }
-                // ]);
 
                 zipArchive.glob(
                     '**',
                     {
                         dot: true,
                         cwd: install_location + '/node_modules/' + pkg.name
-                    }
+                    },
+                    {mode: 511}
                 );
 
                 if (options.include_files.length) {
-                    zipArchive.bulk([
-                        {
-                            src: options.include_files,
-                            dot: true,
-                            expand: true,
-                            cwd: options.package_folder
-                        }
-                    ]);
+                    for (var i = 0, len = options.include_files.length; i < len; i++) {
+                        var path = (options.package_folder.length > 2) ? options.package_folder + '/' : options.package_folder;
+                        zipArchive.file(path+options.include_files[i], {name: options.include_files[i], mode: 511});
+                    }
                 }
 
                 zipArchive.finalize();
