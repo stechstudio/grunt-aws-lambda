@@ -61,6 +61,8 @@ packageTask.getHandler = function (grunt) {
             npm.commands.install(install_location, options.package_folder, function () {
 
                 var output = fs.createWriteStream(zip_path);
+
+                /** @var Archiver  */
                 var zipArchive = archive('zip');
 
                 /*
@@ -77,14 +79,22 @@ packageTask.getHandler = function (grunt) {
 
                 zipArchive.pipe(output);
 
-                zipArchive.bulk([
+                // zipArchive.bulk([
+                //     {
+                //         src: ['./**'],
+                //         dot: true,
+                //         expand: true,
+                //         cwd: install_location + '/node_modules/' + pkg.name
+                //     }
+                // ]);
+
+                zipArchive.glob(
+                    '**',
                     {
-                        src: ['./**'],
                         dot: true,
-                        expand: true,
                         cwd: install_location + '/node_modules/' + pkg.name
                     }
-                ]);
+                );
 
                 if (options.include_files.length) {
                     zipArchive.bulk([
