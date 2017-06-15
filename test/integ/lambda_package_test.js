@@ -63,6 +63,7 @@ exports.lambda_package = {
         var zip = new AdmZip("tmp/dist/another-lambda-function_0-0-1_latest.zip");
         var zipEntries = zip.getEntries();
 
+
         var required = [
             'custom.json',
             'index.js',
@@ -71,7 +72,7 @@ exports.lambda_package = {
             'node_modules/jquery/',
             'node_modules/jquery/package.json'
         ];
-
+        process.stdout.write("\n");
         zipEntries.forEach(function (item) {
             if (required.indexOf(item.entryName) !== -1) {
                 test.ok(true, "Found " + item.entryName);

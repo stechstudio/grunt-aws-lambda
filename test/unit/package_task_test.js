@@ -47,8 +47,8 @@ packageTaskTest.setUp = function(done) {
 
     zipAPI = {
         pipe: sinon.stub(),
-        bulk: sinon.stub(),
         glob: sinon.stub(),
+        file: sinon.stub(),
         finalize: sinon.stub(),
         _normalizeEntryData: sinon.stub()
     };
@@ -246,8 +246,8 @@ packageTaskTest.testIncludeFiles = function(test) {
             test.ok(zipAPI.glob.calledWithMatch(sinon.match(function(value) {
                 return value === '**';
             })));
-            test.ok(zipAPI.bulk.calledWithMatch(sinon.match(function(value) {
-                return value[0].src[0] === 'foo/bar.txt';
+            test.ok(zipAPI.file.calledWithMatch(sinon.match(function(value) {
+                return value === './foo/bar.txt';
             })));
             test.ok(mkdirpStub.calledWith('./dist'));
             test.ok(rimrafStub.calledWith('temp-dir'));
