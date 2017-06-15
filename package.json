@@ -1,27 +1,20 @@
 {
-    "name": "grunt-aws-lambda",
+    "name": "sts-grunt-aws-lambda",
     "description": "A grunt plugin to help develop AWS Lambda functions.",
-    "version": "0.13.0",
-    "homepage": "https://github.com/Tim-B/grunt-aws-lambda",
-    "author": {
-        "name": "Tim-B",
-        "email": "tim@galacticcode.com"
-    },
-    "repository": {
-        "type": "git",
-        "url": "git://github.com/Tim-B/grunt-aws-lambda.git"
-    },
-    "bugs": {
-        "url": "https://github.com/Tim-B/grunt-aws-lambda/issues"
-    },
-    "licenses": [
-        {
-            "type": "MIT",
-            "url": "https://github.com/Tim-B/grunt-aws-lambda/blob/master/LICENSE-MIT"
-        }
+    "version": "1.0.0",
+    "homepage": "https://github.com/stechstudio/sts-grunt-aws-lambda",
+    "author": "Signature Tech Studio (http://stechstudio.com)",
+    "contributors": [
+        "Bubba Hines <bubba@stechstudio.com> (https://github.com/bubba-h57)",
+        "Tim-B <tim@galacticcode.com> (https://github.com/Tim-B)"
     ],
+    "repository": "stechstudio/sts-grunt-aws-lambda",
+    "bugs": {
+        "url": "https://github.com/stechstudio/sts-grunt-aws-lambda/issues"
+    },
+    "license": "MIT",
     "engines": {
-        "node": ">= 0.8.0"
+        "node": ">= 0.10.0"
     },
     "scripts": {
         "test": "grunt"
@@ -50,6 +43,11 @@
         "grunt": ">=0.4.0"
     },
     "keywords": [
-        "gruntplugin"
+        "gruntplugin",
+        "aws",
+        "lambda",
+        "aws lambda",
+        "grunt",
+        "plugin"
     ]
 }
